@@ -9,17 +9,9 @@
 var FETCH_DATE_PROP = "LastFetchedOn";       // date last fetched from Strava in mm/dd/yyyy where mm starts at 0
 var MS_IN_A_DAY = 1000 * 3600 * 24;
 
-function cleanupProp()
-{
-  var prop = PropertiesService.getScriptProperties().getProperty(FETCH_DATE_PROP);
-  Logger.log(prop);
-  PropertiesService.getScriptProperties().setProperty(FETCH_DATE_PROP, "");
-  Logger.log(PropertiesService.getScriptProperties().getProperty(FETCH_DATE_PROP));
-}
-
 // Get athlete activity data
-function getStravaActivityData(shouldFetch) {
-  onOpen();
+function getRawStravaActivityData() {
+  let shouldFetch = sCache.shouldFetchNewData();
     
   // call the Strava API to retrieve data
   var data = [];
@@ -29,67 +21,28 @@ function getStravaActivityData(shouldFetch) {
   if (!shouldFetch)
   {
     data = sCache.getCachedData();
-
-    // no data
-    if (data.length == 0)
+    if (data.length == 0)         // no data
     {
       Logger.log("No cache found even after rate limit exceeded. Wait until tomorrow.")
       return;
     }    
-  }
-  else
-  {
+  } else {
     Logger.log("Fetching fresh new data.");
-
     while (tempData == null || tempData.length > 0)
     {
-      Logger.log("data");
-      Logger.log(JSON.stringify(data));
-      
       if (tempData != null)
-      {
         data = data.concat(tempData);
-      }
       
       tempData = callStravaAPI('?after=1546300800&per_page=200&page=' + page);
-      Logger.log("tempData");
-      Logger.log(JSON.stringify(tempData));
       page++;
     }
 
-  }
-
-  // TODO: test
-   
-  // empty array to hold activity data
-  var stravaData = [];
-     
-  // loop over activity data and add to stravaData array for Sheet
-  data.forEach(function(activity, index) {
-    var arr = [];
-    arr.push(
-      activity.id,
-      activity.name,
-      activity.type,
-      activity.distance
-    );
-    stravaData.push(arr);
-
-    // if got fresh new data, cache it
-    if (!cacheRetrieved)
-    {
-      sCache.setCache(index, activity);
-    }
-  });  
-
-  if (shouldFetch)
-  {
     PropertiesService.getScriptProperties().setProperty(FETCH_DATE_PROP, sUtil.todayDateNoTime());
     Logger.log("New fetched date: ");
     Logger.log(PropertiesService.getScriptProperties().getProperty(FETCH_DATE_PROP));
   }
-
-  Logger.log("There are a total of " + stravaData.length + " activities.");
+     
+  Logger.log("There are a total of " + data.length + " activities.");
   return data;
 }
  
@@ -126,4 +79,12 @@ function callStravaAPI(params) {
     Logger.log("Open the following URL and re-run the script: %s",
         authorizationUrl);
   }
+}
+
+function cleanupProp()
+{
+  var prop = PropertiesService.getScriptProperties().getProperty(FETCH_DATE_PROP);
+  Logger.log(prop);
+  PropertiesService.getScriptProperties().setProperty(FETCH_DATE_PROP, "");
+  Logger.log(PropertiesService.getScriptProperties().getProperty(FETCH_DATE_PROP));
 }

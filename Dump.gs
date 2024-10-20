@@ -48,3 +48,21 @@
 //     getStravaActivityData();
 //   }
 // }
+
+// var stravaData = [];
+// data.forEach(function(activity, index) {
+//     var arr = [];
+//     arr.push(
+//       activity.id,
+//       activity.name,
+//       activity.type,
+//       activity.distance
+//     );
+//     stravaData.push(arr);
+
+//     // if got fresh new data, cache it
+//     if (!cacheRetrieved)
+//     {
+//       sCache.setCache(index, activity);
+//     }
+//   });  
