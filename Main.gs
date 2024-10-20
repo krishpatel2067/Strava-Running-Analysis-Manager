@@ -31,4 +31,4 @@ function onOpen() {
   }
 }
 
-// TODO: button sync functionality 
+// TODO: button sync functionality that is mobile friendly
