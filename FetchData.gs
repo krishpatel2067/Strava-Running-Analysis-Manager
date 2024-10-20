@@ -52,7 +52,13 @@ function getRawStravaActivityData() {
   return data;
 }
  
-// call the Strava API [not written by me]
+// call the Strava API
+/*
+Function written by:
+benlcollins:  
+    Website: https://www.benlcollins.com/spreadsheets/strava-api-with-google-sheets/.
+    Repository: https://github.com/benlcollins/strava-sheets-integration
+*/
 function callStravaAPI(params) {
    
   // set up the service

@@ -1,4 +1,9 @@
-// [script not written by me]
+/*
+Script from:
+  benlcollins:  
+    Website: https://www.benlcollins.com/spreadsheets/strava-api-with-google-sheets/.
+    Repository: https://github.com/benlcollins/strava-sheets-integration
+*/
 
 var CLIENT_ID = '128095';
 var CLIENT_SECRET = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Secret").getRange("A1:A1").getCell(1, 1).getValue();
