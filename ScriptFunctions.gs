@@ -19,3 +19,6 @@ let sUtil = {
   "metersToMiles": metersToMiles,
   "getPace": getPace,
 };
+let sAnalysis = {
+  "summary": summary,
+}

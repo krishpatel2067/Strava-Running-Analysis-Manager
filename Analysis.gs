@@ -4,7 +4,7 @@ let data = sProcessData.getProcessedData();
 function summary() {
   let START_ROW = 2;
   let TITLE_COL = "A";
-  let DATA_COL = "B";
+  let VALUE_COL = "B";
   let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Summary");
 
   let summaryData = {
@@ -36,4 +36,16 @@ function summary() {
   summaryData.totalTime = Math.floor(totalTimeS/3600) + " h " + Math.floor((totalTimeS%3600) / 60) + " m"
   summaryData.percentDistanceRunning = Math.round(100 * (summaryData.totalDistance/grandTotalDistance) * 100) / 100;
   summaryData.averagePace = sUtil.getPace(totalTimeS, summaryData.totalDistance);
+
+  let row = START_ROW;
+
+  // update sheet
+  for (const [title, value] of summaryData)
+  {
+    let titleCell = sheet.getRange(TITLE_COL+row+":"+TITLE_COL+row).getCell(1, 1);
+    let valueCell = sheet.getRange(VALUE_COL+row+":"+VALUE_COL+row).getCell(1, 1);
+    titleCell.setValue(title);
+    valueCell.setValue(value);
+    row++;
+  }
 }

@@ -5,6 +5,7 @@ function onOpen() {
  
   ui.createMenu('Strava App')
     .addItem('Sync Latest', 'syncButtonHandler')
+    .addItem('Update Summary', "summary")
     .addToUi();
 }
 
