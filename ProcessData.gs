@@ -22,6 +22,8 @@ function getProcessedData() {
 
     __insertInDateOrder(processed[type], activity);
   });
+
+  return processed;
 }
 
 function __insertInDateOrder(arr, elem)
