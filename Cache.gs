@@ -1,4 +1,4 @@
-let cache = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Cache");
+let cache = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("RawCache");
 let cacheRange = cache.getRange("A:A");
 let cacheRetrieved = false;
 
@@ -39,12 +39,16 @@ function getCachedData()
 
     for (let r = 1; r <= dataRange.getLastRow(); r++)
     {
-        activityObj = JSON.parse(dataRange.getCell(r, 1).getValue());
-        data.push(activityObj);
+      let raw = dataRange.getCell(r, 1).getValue();
+      if (raw == "") continue;
+      activityObj = JSON.parse(raw);
+      data.push(activityObj);
     }
 
     cacheRetrieved = true;
     Logger.log("Got cache");
+
+    return data;
 }
 
 function setCache(index, data)

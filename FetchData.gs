@@ -37,6 +37,12 @@ function getRawStravaActivityData() {
       page++;
     }
 
+    data.forEach(function(activity, index) {
+      // if got fresh new data, cache it
+      if (shouldFetch)
+        sCache.setCache(index, activity);
+  });  
+
     PropertiesService.getScriptProperties().setProperty(FETCH_DATE_PROP, sUtil.todayDateNoTime());
     Logger.log("New fetched date: ");
     Logger.log(PropertiesService.getScriptProperties().getProperty(FETCH_DATE_PROP));

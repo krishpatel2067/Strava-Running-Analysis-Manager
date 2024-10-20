@@ -9,24 +9,34 @@
   }
 
 */
-// TODO: finish & test this function
+
+let i = 0;
+
+// TODO: cache the ordered data (takes forever to create one every time lol)
 function getProcessedData() {
   let raw = sFetchData.getRawStravaActivityData();
   let processed = {};
 
-  raw.forEach(function(activity, index) {
+  raw.forEach(function(activity) {
     let type = activity.type;
 
     if (processed[type] == null) 
       processed[type] = [];
 
-    __insertInDateOrder(processed[type], activity);
+    if (i >= 0) {
+      Logger.log("Activity getProcessedData");
+      Logger.log(activity);
+      let index = __getIndexToMaintainDateOrder(processed[type], activity);
+      processed[type].splice(index, 0, activity);
+      Logger.log(processed[type]);
+      i++;
+    }
   });
 
   return processed;
 }
 
-function __insertInDateOrder(arr, elem)
+function __getIndexToMaintainDateOrder(arr, elem)
 {
   let elemDate = new Date(elem.start_date);
 
@@ -36,8 +46,7 @@ function __insertInDateOrder(arr, elem)
 
     if (elemDate <= currDate)
     {
-      arr.splice(index, 0, elem);
-      return;
+      return index;
     }
   }
 }
