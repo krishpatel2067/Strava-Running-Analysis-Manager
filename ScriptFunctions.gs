@@ -1,4 +1,7 @@
 // script functions (to organize them)
+let sFetchData = {
+  "getRawStravaActivityData": getRawStravaActivityData
+}
 let sOauth = {
   "getStravaService": getStravaService
 }
