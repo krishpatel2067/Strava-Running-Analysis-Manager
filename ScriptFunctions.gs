@@ -15,5 +15,7 @@ let sCache = {
 };
 let sUtil = {
   "getDateFromStr": getDateFromStr,
-  "todayDateNoTime": todayDateNoTime
+  "todayDateNoTime": todayDateNoTime,
+  "metersToMiles": metersToMiles,
+  "getPace": getPace,
 };
