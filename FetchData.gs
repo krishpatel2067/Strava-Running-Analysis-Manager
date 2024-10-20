@@ -81,6 +81,7 @@ function callStravaAPI(params) {
   }
 }
 
+// just to reset the properties in case I mess up testing it out
 function cleanupProp()
 {
   var prop = PropertiesService.getScriptProperties().getProperty(FETCH_DATE_PROP);

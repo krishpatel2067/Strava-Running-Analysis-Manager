@@ -1,7 +1,7 @@
 // [script not written by me]
 
 var CLIENT_ID = '128095';
-var CLIENT_SECRET = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Secret").getRange("A1:A1").getCell().getValue();
+var CLIENT_SECRET = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Secret").getRange("A1:A1").getCell(1, 1).getValue();
  
 // configure the service
 function getStravaService() {
