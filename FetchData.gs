@@ -16,7 +16,7 @@ function cleanupProp()
   PropertiesService.getScriptProperties().setProperty(FETCH_DATE_PROP, "");
   Logger.log(PropertiesService.getScriptProperties().getProperty(FETCH_DATE_PROP));
 }
- 
+
 // Get athlete activity data
 function getStravaActivityData(shouldFetch) {
   onOpen();
@@ -93,16 +93,15 @@ function getStravaActivityData(shouldFetch) {
   return data;
 }
  
-// call the Strava API
+// call the Strava API [not written by me]
 function callStravaAPI(params) {
    
   // set up the service
-  var service = sOath.getStravaService();
+  var service = sOauth.getStravaService();
    
   if (service.hasAccess()) {
     Logger.log('App has access.');
      
-    // TODO: create loop to get all acitivties
     var endpoint = 'https://www.strava.com/api/v3/athlete/activities';
  
     var headers = {

@@ -1,5 +1,5 @@
 // script functions (to organize them)
-let sOath = {
+let sOauth = {
   "getStravaService": getStravaService
 }
 let sCache = {

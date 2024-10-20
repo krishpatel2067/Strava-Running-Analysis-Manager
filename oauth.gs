@@ -1,5 +1,7 @@
+// [script not written by me]
+
 var CLIENT_ID = '128095';
-var CLIENT_SECRET = '9badb0297fc8ef238ca73f685a1300123daf4618';   // make into cell!
+var CLIENT_SECRET = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Secret").getRange("A1:A1").getCell().getValue();
  
 // configure the service
 function getStravaService() {
