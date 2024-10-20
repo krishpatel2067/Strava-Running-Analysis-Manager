@@ -2,6 +2,9 @@
 let sFetchData = {
   "getRawStravaActivityData": getRawStravaActivityData
 }
+let sProcessData = {
+  "getProcessedData": getProcessedData
+}
 let sOauth = {
   "getStravaService": getStravaService
 }
