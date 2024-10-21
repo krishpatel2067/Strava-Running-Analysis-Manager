@@ -1,5 +1,5 @@
-let cache = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("RawCache");
-let cacheRange = cache.getRange("A:A");
+let rawCache = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("RawCache");
+let processedCache = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("ProcessedCache");
 let cacheRetrieved = false;
 
 function shouldFetchNewData()
@@ -31,10 +31,9 @@ function shouldFetchNewData()
 
 function getCachedData()
 {
-    Logger.log("Retrieving cache...");
-    // retrieve cache
+    Logger.log("Retrieving raw cache...");
     let data = [];
-    let dataRange = cache.getDataRange();
+    let dataRange = rawCache.getDataRange();
     let activityObj;
 
     for (let r = 1; r <= dataRange.getLastRow(); r++)
@@ -46,13 +45,21 @@ function getCachedData()
     }
 
     cacheRetrieved = true;
-    Logger.log("Got cache");
+    Logger.log("Got raw cache");
 
     return data;
 }
 
 function setCache(index, data)
 {
-    cacheRange.getCell(index + 1, 1).setValue(JSON.stringify(data));
+    cache.getRange("A:A").getCell(index + 1, 1).setValue(JSON.stringify(data));
 }
 
+function setCacheProcesseData(processed)
+{
+  // iterate through all types of activities & assign diff column
+  for (let k in processed)
+  {
+    
+  }
+}
