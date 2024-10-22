@@ -54,7 +54,13 @@ function getCachedData()
 
 function setCache(index, data)
 {
-    cache.getRange("A:A").getCell(index + 1, 1).setValue(JSON.stringify(data));
+    rawCache.getRange("A:A").getCell(index + 1, 1).setValue(JSON.stringify(data));
+}
+
+function hasProcessedCache()
+{
+  // I know that I have at least a 100 runs (which is the column with the most rows)
+  return !(processedCache.getDataRange().getNumRows() <= 100);
 }
 
 function getCachedProcessedData()
@@ -75,6 +81,9 @@ function getCachedProcessedData()
         processed[actType].push(JSON.parse(cellValue));
     }
   });
+
+  Logger.log("Retrieved processed cache")
+  return processed;
 }
 
 function setCacheProcesseData(processed)
@@ -87,7 +96,7 @@ function setCacheProcesseData(processed)
 
     processed[k].forEach(function(activity, index)
     {
-      let range = processedCache.getRange(index, col, 1);
+      let range = processedCache.getRange(index + 1, col, 1);
       let cell = range.getCell(1, 1);
       cell.setValue(JSON.stringify(activity));
     });

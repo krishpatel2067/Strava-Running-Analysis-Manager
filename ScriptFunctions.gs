@@ -12,6 +12,8 @@ let sCache = {
   "getCachedData": getCachedData,
   "setCache": setCache,
   "shouldFetchNewData": shouldFetchNewData,
+  "hasProcessedCache": hasProcessedCache,  
+  "getCachedProcessedData": getCachedProcessedData,
   "setCacheProcesseData": setCacheProcesseData,
 };
 let sUtil = {
