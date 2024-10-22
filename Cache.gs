@@ -57,6 +57,26 @@ function setCache(index, data)
     cache.getRange("A:A").getCell(index + 1, 1).setValue(JSON.stringify(data));
 }
 
+function getCachedProcessedData()
+{
+  let processed = {};
+  let numRows = processedCache.getDataRange().getNumRows();
+
+  ACTIVITY_TYPES.forEach(function(actType, index)
+  {
+    processed[actType] = [];
+    let range = processedCache.getRange(1, index + 1, numRows);
+
+    for (let r = 1; r < numRows; r++)
+    {
+      let cellValue = range.getCell(r, 1).getValue();
+
+      if (cellValue != "")
+        processed[actType].push(JSON.parse(cellValue));
+    }
+  });
+}
+
 function setCacheProcesseData(processed)
 {
   // iterate through all types of activities & assign diff column to each type
