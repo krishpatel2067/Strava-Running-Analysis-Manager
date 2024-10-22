@@ -11,7 +11,8 @@ let sOauth = {
 let sCache = {
   "getCachedData": getCachedData,
   "setCache": setCache,
-  "shouldFetchNewData": shouldFetchNewData
+  "shouldFetchNewData": shouldFetchNewData,
+  "setCacheProcesseData": setCacheProcesseData,
 };
 let sUtil = {
   "getDateFromStr": getDateFromStr,

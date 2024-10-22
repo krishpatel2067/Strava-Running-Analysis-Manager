@@ -2,6 +2,8 @@ let rawCache = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("RawCache");
 let processedCache = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("ProcessedCache");
 let cacheRetrieved = false;
 
+let ACTIVITY_TYPES = ["Run", "Walk", "Elliptical"]
+
 function shouldFetchNewData()
 {
   let lastFetchedDateStr = PropertiesService.getScriptProperties().getProperty(FETCH_DATE_PROP);
@@ -57,9 +59,18 @@ function setCache(index, data)
 
 function setCacheProcesseData(processed)
 {
-  // iterate through all types of activities & assign diff column
+  // iterate through all types of activities & assign diff column to each type
+  // while rows fill up each activity of that type
   for (let k in processed)
   {
-    
+    let col = 1 + ACTIVITY_TYPES.indexOf(k);
+
+    processed[k].forEach(function(activity, index)
+    {
+      let range = processedCache.getRange(index, col, 1);
+      let cell = range.getCell(1, 1);
+      cell.setValue(JSON.stringify(activity));
+    });
   }
+    Logger.log("Successfully cached all processed data")
 }
