@@ -1,4 +1,7 @@
 # Strava Running Analysis Manager
+
+**Please keep in mind that this is a long-term, work-in-progress project!** It lurks in the background as I complete other, shorter passion projects in parallel.
+
 Hi everyone,
 
 I'm a hobbyist runner who uses Strava to track his runs. I downloaded Strava in July 2023 and learned Google Apps Script in the spring of 2024. Technically, the project started in early June, but I only recently created the repo (thanks to the Google Apps Script GitHub Assistant Chrome extension).
