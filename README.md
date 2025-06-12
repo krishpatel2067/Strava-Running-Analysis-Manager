@@ -1,4 +1,4 @@
-Please note: this project has been changed to be a web app, so this repository will not be committed to from here on out. I have the web app version of this project ongoing, which will become public soon.
+Please note: I stopped working on this particular project (using Google Apps Script). Instead, I have started on another version, which will be a web app soon.
 
 Old README:
 
