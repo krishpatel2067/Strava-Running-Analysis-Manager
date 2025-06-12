@@ -1,3 +1,7 @@
+Please note: this project has been changed to be a web app, so this repository will not be committed to from here on out. I have the web app version of this project ongoing, which will become public soon.
+
+Old README:
+
 # Strava Running Analysis Manager
 
 **Please keep in mind that this is a long-term, work-in-progress project!** It lurks in the background as I complete other, shorter passion projects in parallel.
